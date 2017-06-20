@@ -1,0 +1,24 @@
+{
+  "config": {
+    "connector.class": "org.cvasilak.hawkular.kafka.connect.sink.HawkularSinkConnector",
+    "tasks.max": "1",
+    "topics": "topic_to_read",
+    "metric.id.prefix": "country,serverId",
+    "metric.id.fields": "requests:COUNTER,heap:GAUGE,osVer:STRING,online:AVAILABILITY",
+    "metric.id.tags": "country,serverId",
+    "metric.timestamp.field": "timestamp",
+    "hawkular.hostname": "http://localhost:8080",
+    "hawkular.username": "user",
+    "hawkular.password": "secret",
+    "hawkular.tenant.id": "tenant",
+    "hawkular.admin.token": "token",
+    "hawkular.retention.period": "365",
+    "hawkular.max.retries": "10",
+    "hawkular.retry.backoff.ms": "3000",
+    "transforms": "flatten",
+    "transforms.flatten.type": "org.cvasilak.kafka.connect.transforms.Flatten$Value",
+    "transforms.flatten.blacklist": "ignorefield, anotherfield",
+    "transforms.flatten.delimiter": "."
+  },
+  "name": "hawkular-sink-simple"
+}

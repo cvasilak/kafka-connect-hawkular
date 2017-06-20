@@ -1,0 +1,30 @@
+{
+  "config": {
+    "connector.class": "org.cvasilak.hawkular.kafka.connect.sink.HawkularSinkConnector",
+    "tasks.max": "2",
+    "topics": "server1_observation,server1_management_rep",
+    "metric.id.prefix": "serverId,ep",
+    "metric.id.container": "path",
+    "metric.id.fields": "lvalue:GAUGE,dvalue:GAUGE,svalue:STRING,bvalue:AVAILABILITY",
+    "metric.id.tags": "serverId,ep,path",
+    "metric.timestamp.field": "timestamp",
+    "hawkular.hostname": "http://localhost:8080",
+    "hawkular.username": "user",
+    "hawkular.password": "secret",
+    "hawkular.tenant.id": "tenant",
+    "hawkular.admin.token": "token",
+    "hawkular.retention.period": "365",
+    "hawkular.max.retries": "10",
+    "hawkular.retry.backoff.ms": "3000",
+    "transforms": "flatten,replacer,cast",
+    "transforms.flatten.type": "org.cvasilak.kafka.connect.transforms.Flatten$Value",
+    "transforms.flatten.blacklist": "org.cvasilak.leshan.avro.model.AvroObjectResource,org.cvasilak.leshan.avro.model.AvroInstanceResource",
+    "transforms.flatten.delimiter": ".",
+    "transforms.replacer.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+    "transforms.replacer.whitelist": "serverId,ep,rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.path,rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.value.double,rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.value.long,rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.value.string,rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.value.boolean,timestamp",
+    "transforms.replacer.renames": "rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.path:path,rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.value.double:dvalue,rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.value.long:lvalue,rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.value.string:svalue,rep.body.org.cvasilak.leshan.avro.response.AvroReadResponse.content.org.cvasilak.leshan.avro.model.AvroResource.value.boolean:bvalue",
+    "transforms.cast.type": "org.cvasilak.kafka.connect.transforms.Cast$Value",
+    "transforms.cast.spec": "lvalue:float64"
+  },
+  "name": "hawkular-sink-advanced"
+}
