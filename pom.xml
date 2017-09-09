@@ -27,8 +27,8 @@
     </developers>
 
     <properties>
-        <kafka.version>0.10.2.1</kafka.version>
-        <confluent.version>3.2.1</confluent.version>
+        <kafka.version>0.11.0.0</kafka.version>
+        <confluent.version>3.3.0</confluent.version>
         <hawkular-java-client.version>0.0.17-SNAPSHOT</hawkular-java-client.version>
         <junit.version>4.12</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
